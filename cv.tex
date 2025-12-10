@@ -56,6 +56,7 @@
 % improve word spacing and hyphenation
 \usepackage{microtype}
 \usepackage{ragged2e}
+\usepackage{enumitem}
 
 % uncomment in case you don't want any hyphenation
 % \usepackage[none]{hyphenat}
@@ -88,6 +89,7 @@
 % enable mathematical syntax for some symbols like \varnothing
 \usepackage{amssymb}
 
+
 % bubble diagram configuration
 \usepackage{smartdiagram}
 \smartdiagramset{
@@ -112,10 +114,11 @@
 %-------------------------------------------------------------------------------
 %% mandatory information
 % your name
-\cvname{Sébastien Gradit}
-% job title/career
-\cvjobtitle{\centering{Data Scientist Bioinformatician}\\[0.25pt] \vspace{10pt}}
 
+\cvname{\centering{\huge{Sébastien Gradit}}}
+% job title/career
+% AFTER: Reduces the space after the job title for a tighter look
+\cvjobtitle{\centering{Computational Biologist Data Scientist}\\[0.25pt]\vspace{-2pt}}
 
 %% optional information
 % profile picture
@@ -127,13 +130,20 @@
 % date of birth
 % \cvbirthday{\today} % Birth date
 % short address/location, use \newline if more than 1 line is required
-\cvaddress{Issy-les-Moulineaux, France}
-% phone number
-\cvphone{+33 6 50 84 94 62}
-% personal website
-% \cvsite{https://github.com/sebgra}
-% email address
-\cvmail{sebastiengradit@gmail.com}
+% \cvaddress{\small{Issy-les-Moulineaux, France}}
+% % phone number
+% \cvphone{\small{+33 6 50 84 94 62}}
+% % personal website
+% \cvsite{\small{https://sebastiengradit.com}}
+% % email address
+% \cvmail{\small{sebastiengradit@gmail.com}}
+\cvaddress{\small{Issy-les-Moulineaux}}
+\cvphone{\small{+33 6 50 84 94 62}}
+\cvmail{\small{sebastiengradit@gmail.com}}
+\cvsite{\small{https://sebastiengradit.com}}
+\cvgithub{\small{sebgra}}
+\cvlinkedin{\small{sebastien-gradit}}
+
 % pgp key
 % \cvkey{4096R/FF00FF00}{0xAABBCCDDFF00FF00} % Change for ORCID ? 
 % any other custom entry
@@ -144,39 +154,42 @@
 %-------------------------------------------------------------------------------
 % add more profile sections to sidebar on first page
 \addtofrontsidebar{
+	% \vspace{-1em} % reduce space above first section
 	% include gosquare national flags from https://github.com/gosquared/flags;
 	% naming according to ISO 3166-1 alpha-2 country codes
 	\graphicspath{{pics/gosquared-flags/flags/flags-iso/shiny/64}}
 
 	% social network accounts incl. proper hyperlinks
-	\sidesection{Social Network}
-	\begin{tabular}{p{0.55\linewidth} p{0.55\linewidth}}
-		\begin{icontable}{2em}{1em}
-			% \social{\faLeaf}
-			% 	{https://de.overleaf.com/latex/templates/forty-seconds-cv/pztcktmyngsk}
-			% 	{Overleaf Template Link}
-			\social{\faLinkedin}
-				{https://linkedin.com/in/sebastien-gradit}
-				{S. Gradit}
-		\end{icontable} 
-		&
-		\begin{icontable}{2em}{1em}
-			% \social{\faLeaf}
-			% 	{https://de.overleaf.com/latex/templates/forty-seconds-cv/pztcktmyngsk}
-			% 	{Overleaf Template Link}
-			\social{\faGithub}
-				{https://github.com/sebgra}
-				{sebgra}
-		\end{icontable}
-	\end{tabular}
+	% \sidesection{Social Network}
+	% \begin{tabular}{p{0.55\linewidth} p{0.55\linewidth}}
+	% 	\begin{icontable}{2em}{1em}
+	% 		% \social{\faLeaf}
+	% 		% 	{https://de.overleaf.com/latex/templates/forty-seconds-cv/pztcktmyngsk}
+	% 		% 	{Overleaf Template Link}
+	% 		\social{\faLinkedin}
+	% 			{https://linkedin.com/in/sebastien-gradit}
+	% 			{S. Gradit}
+	% 	\end{icontable} 
+	% 	&
+	% 	\begin{icontable}{2em}{1em}
+	% 		% \social{\faLeaf}
+	% 		% 	{https://de.overleaf.com/latex/templates/forty-seconds-cv/pztcktmyngsk}
+	% 		% 	{Overleaf Template Link}
+	% 		\social{\faGithub}
+	% 			{https://github.com/sebgra}
+	% 			{sebgra}
+	% 	\end{icontable}
+	% \end{tabular}
 
-	\sidesection{About Me}
+	\sidesection{\large About Me}
+	\vspace{0em} % Reducing space below the title
 		\aboutme{
-			PhD-trained bioinformatician from the Pasteur Institute seeking to apply expertise in data science and biological interpretation to advance research.
-			Proven ability to leverage machine learning and statistical modeling to solve complex biological problems.
+		\small{Highly accomplished PhD Computational Biologist with over five years of experience, specializing in bridging
+		AI/ML solutions and Bioinformatics to transform complex multi‑omics data into actionable insights for R\&D.
+		My expertise includes advanced computational methods and data‑driven approaches to accelerate tool deployment and integration, with a strong focus on reproducibility and multidisciplinary collaboration.}
 		}
 
-	\sidesection{Languages}
+	\sidesection{\large{Languages}}
 		% \pointskill{\flag{CN.png}}{Chinese}{5}
 	% 	\pointskill{\flag{DE.png}}{German}{3}
 	% \pointskill{\flag{GB.png}}{English}{3}
@@ -184,41 +197,78 @@
 		\setlength{\leftmargini}{0.2cm}
 		\begin{itemize}
 			\item English: Fluent (TOEIC 955/990)
-			\item French: Mother tongue
+			% \item French: Mother tongue
 		\end{itemize}
 
-	\sidesection{Hard Skills}
-		% \skill{}{Basic programmation}
-		\setlength{\leftmargini}{0.2cm}
-			\begin{itemize}
-				\item Basic programmation: Bash, Python, R, C++, HPC (Slurm, AWS) 
-				\item Bioinformatics: Multiomics integrative analysis, Automation of mapping and genomics analysis
-				\item Data analysis: Data mining, interactive dashboards (Shiny, Streamlit), \\SQL databases
-				\item Machine learning: TensorFlow, Keras, Scikit-learn
-				\item Workflow: CI/CD automation (git, Snakemake, Nextflow)
-				\item Containerization and deployment (Docker, Singularity)
-				\item Web: Static (HTML, CSS)
-			\end{itemize}
+\sidesection{\Large{Skills}}
+\vspace{0em} 
+\setlength{\leftmargini}{0.2cm}
+
+\small{
+    \begin{itemize}
+        \raggedright % <-- ADDED: Disables justification and thus hyphenation for better spacing
+        
+        \item \textbf{Core Programming:} Python [advanced], C++ [Intermediate], R [Intermediate], High Performance Computing [Slurm], Cloud [AWS], Versioning [Git, GitHub]
+        
+        \item \textbf{Data Science / ML:} Machine Learning [Keras, TensorFlow, PyTorch, SciKit-Learn], SQL [Intermediate], Interactive Dashboards [Streamlit, Shiny]
+        
+        \item \textbf{Data Management / Workflow:} Continuous Integration/Continuous Development [GitHub Actions, Snakemake, Makefile], Containerization [Docker, Singularity]
+        
+        \item \textbf{Bioinformatics:} Package Development [PyPI, Conda], Multi-Omics Integration, Automation of Mapping and Downstream Analyses (NGS), High-Throughput Omics Data Analysis [RNA-Seq, ChIP-Seq, Hi-C, Single-cell Omics]
+        
+    \end{itemize}
+} % End the font size change here
 		% \skill{\faBalanceScale}{Sleeping almost all day}
 		% \skill{\faSitemap}{Eating a lot of bamboo sprouts}
 		% \skill{\faGraduationCap}{Relaxing rest of the day}
 
-	\sidesection{Soft Skills}
+	%% Double column soft skill section
+
+	% \sidesection{\Large{Soft Skills}}
+	% \vspace{-2em}
+	% 	% \pointskill{\faHome}{Looking Cute}{4}[4]
+	% 	% 	\skill[1.8em]{\faCompress}{No need to specify further}
+	% 	% \pointskill{\faChild}{Chillin' hard}{3}[4]
+	% 	% 	\skill[1.8em]{\faCompress}{On a tree}
+	% 	% 	\skill[1.8em]{\faCompress}{In the grass}
+	% 	\begin{tabular}{p{0.55\linewidth} p{0.55\linewidth}} % Double sided list
+	% 		\begin{itemize}
+	% 			\item Analytical Thinking \&Complex Problem‑Solving
+	% 			\item Adaptability, Agility \& Continuous Learning
+	% 		\end{itemize} &
+	% 		\begin{itemize}
+	% 			\item Creative Thinking \& Innovation
+	% 			\item Effective Communication \& Interdisciplinary Collaboration
+	% 		\end{itemize} 
+	% 	  \end{tabular}
+
+		\sidesection{\large{Soft Skills}}
+		\vspace{-2em}
 		% \pointskill{\faHome}{Looking Cute}{4}[4]
 		% 	\skill[1.8em]{\faCompress}{No need to specify further}
 		% \pointskill{\faChild}{Chillin' hard}{3}[4]
 		% 	\skill[1.8em]{\faCompress}{On a tree}
 		% 	\skill[1.8em]{\faCompress}{In the grass}
-		\begin{tabular}{p{0.55\linewidth} p{0.55\linewidth}} % Double sided list
+		\begin{tabular}{p{1.0\linewidth}} % Double sided list
 			\begin{itemize}
-			  \item Adaptability
-			  \item Problem solving
-			\end{itemize} &
-			\begin{itemize}
-			  \item Communication
-			  \item Scientific inquiry
+				\item \small{Analytical Thinking, Complex Problem-Solving}
+				\item \small{Adaptability, Agility, Continuous Learning}
+			
+				\item \small{Creative Thinking, Innovation}
+				\item \small{Effective Communication, Interdisciplinary Collaboration}
 			\end{itemize} 
 		  \end{tabular}
+
+\sidesection{\Large{Extracurricular Activities}}
+\vspace{1em} % Reduce space below the title
+\begin{itemize}
+    \setlength{\itemsep}{0pt} % Zero space between list items
+    \setlength{\parskip}{0pt}  % Zero space between paragraphs
+    \setlength{\leftmargin}{0pt} % Remove left indentation for the list
+
+    \item \small{\textbf{JeBiF PRESIDENT (2022–24):} Led bioinformatics talent structure/energy; Fostered N/I collaborations; Promoted/popularized bioinformatics; Organized community events.}
+    
+\end{itemize}
 }
 
 
@@ -292,21 +342,82 @@
 \makefrontsidebar
 
 \cvsection{Working Experience}
-\begin{cvtable}[1.85]
-	\cvitem{2021-2024}{PhD candidate}{Pasteur Institute, Paris}{Development of statistical modeling to address missing data
-	in genomics, with focus on genome contacts.}
-	\cvitem{02/2020 -- 08/2020}{Biomedical Engineer}{Siemens Healthcare - LIPADE, Paris}{
-		Applied machine learning techniques to xSPECT imaging for automated segmentation of bone lesions, enhancing the objectivity and precision of 
-		cancer treatment monitoring compared to traditional SPECT imaging.}
-	\cvitem{02/2019 -- 09/2019}{Biomedical Engineer}{Danone Research, Saclay}{Benchmark of bioequivalence assays, development of interactive interface for clinical trial statistical plans visualization, 
-	and machine learning methods implementation for clinical trial plan refactoring for data-driven decision-making.
-	}
-	\cvitem{05/2018 -- 08/2018}{Biomedical Engineer}{Caboma, Montréal}{
-		Design and optimization of biomechanics models within proprietary software, tailoring foot orthotics designs to individual patient morphology for improved treatment outcomes.}
-	
+\vspace{-9pt}
+\begin{cvtable}[1.75]
+    \cvitem{2021-2024}{Bioinformatician}{Pasteur Institute, Paris}{
+        \begin{itemize}[
+            leftmargin=1pt, 
+            topsep=0pt,   
+            partopsep=0pt,
+            itemsep=-2pt,
+            after=\vspace{-2pt},
+            label=\textbullet 
+            % REMOVED: align=\justified
+        ]
+            \justifying % <<< ADD THIS HERE
+            \item  Led comprehensive PhD research focused on deciphering hidden chromatin contacts from repeated genomic elements via advanced statistical profiling.
+            \item Developed Hicberg, a novel computational tool for reconstructing missing chromatin contacts in repeated regions, extensible to pair‑ended
+					omics data, leading to new insights into the spatial organization of genomes.
+			\item  Applied Hicberg to investigate Saccharomyces cerevisiae rDNA behavior and chromatin dynamics under various stress conditions (e.g., heat,
+					oxidative) and kinetics.
+			\item  Leveraged Deep Learning to predict 2‑micron plasmid interactions with the yeast genome based on nucleosome occupancy data.
+        \end{itemize}
+    }
+
+	 \cvitem{02/2020 -- 08/2020}{Biomedical Engineer}{Siemens Healthcare - LIPADE, Paris}{
+        \begin{itemize}[
+            leftmargin=1pt, 
+            topsep=0pt,   
+            partopsep=0pt,
+            itemsep=-2pt,
+            after=\vspace{-2pt},
+            label=\textbullet 
+            % REMOVED: align=\justified
+        ]
+            \justifying % <<< ADD THIS HERE
+            \item  Spearheaded the development of Machine Learning‑driven automatic segmentation tools for bone lesion identification in (x)SPECT volumes, significantly enhancing diagnostic workflow efficiency and providing radiologists with data‑driven insights for more confident decision‑
+					making in oncology.
+			\item  Engineered an end‑to‑end pipeline for automated extraction of radiomic features from xSPECT volumes, accelerating objective region of
+				interest classification and segmentation to deliver critical, actionable data for diagnostic support.
+        \end{itemize}
+    }
+
+	 \cvitem{02/2019 -- 09/2019}{Biomedical Engineer}{Danone Research, Saclay}{
+        \begin{itemize}[
+            leftmargin=1pt, 
+            topsep=0pt,   
+            partopsep=0pt,
+            itemsep=-2pt,
+            after=\vspace{-2pt},
+            label=\textbullet 
+            % REMOVED: align=\justified
+        ]
+            \justifying % <<< ADD THIS HERE
+            \item  Pioneered the implementation and benchmarking of Area Under the Curve(AUC) computation techniques for bioequivalence assays, optimizing
+			data reliability.
+			\item Engineered an interactive user interface for bioequivalence assay analysis, enabling real‑time computation, visualization, and comparative
+			insights.
+			\item Integrated Machine Learning models to refine clinical trial plans, directly supporting data‑driven decision‑making
+        \end{itemize}
+    }
+
+	\cvitem{05/2018 -- 08/2018}{Biomedical Engineer}{CABOMA - UdeM, Montreal}{
+        \begin{itemize}[
+            leftmargin=1pt, 
+            topsep=0pt,   
+            partopsep=0pt,
+            itemsep=-2pt,
+            after=\vspace{-2pt},
+            label=\textbullet 
+            % REMOVED: align=\justified
+        ]
+            \justifying % <<< ADD THIS HERE
+            \item Optimized biomechanical models for patient morphology tailored orthotic design.
+        \end{itemize}
+    }
 \end{cvtable}
 
-\vspace*{4pt}
+\vspace*{1pt}
 
 
 \cvsection{Education}
@@ -323,46 +434,127 @@
 
 
 % \cvsubsection{Study}
-\begin{cvtable}[2]
-	\cvitem{2021 -- 2024}{PhD in bioinformatics}{Pasteur Institute - Sorbonne University}
-		{Regulation Spatiale des Genomes lab.}
-	\cvitem{2019 -- 2020}{M.Sc. in Image Processing}{Télécom Paris - Sorbonne University}
-		{Advanced medical images processing and A.I. | \textit{Honors}}
-	\cvitem{2016 -- 2019}{Master's Degree in Engineering (Dipl. Ing.)}{ISBS - ESIEE Paris}
-		{Bioinformatics, Medical Imagine and A.I. | \textit{Highest Honors}}
+
+%% Old version:
+% \begin{cvtable}[2]
+% 	\cvitem{2021 -- 2024}{PhD in bioinformatics}{Pasteur Institute - Sorbonne University}
+% 		{Regulation Spatiale des Genomes lab.}
+% 	\cvitem{2019 -- 2020}{M.Sc. in Image Processing}{Télécom Paris - Sorbonne University}
+% 		{Advanced medical images processing and A.I. | \textit{Honors}}
+% 	\cvitem{2016 -- 2019}{Master's Degree in Engineering (Dipl. Ing.)}{ISBS - ESIEE Paris}
+% 		{Bioinformatics, Medical Imagine and A.I. | \textit{Highest Honors}}
+% \end{cvtable}
+
+%% New version:
+\vspace{-8pt}
+\begin{cvtable}[1.3]
+    \cvitem{2021-2024}{PhD in Bioinformatics}{Pasteur Institute, Sorbonne University}{}
+    %     \begin{itemize}[
+    %         leftmargin=1pt, 
+    %         topsep=0pt,   
+    %         partopsep=0pt,
+    %         itemsep=-2pt,
+    %         after=\vspace{-2pt},
+    %         label=\textbullet 
+    %         % REMOVED: align=\justified
+    %     ]
+    %         \justifying % <<< ADD THIS HERE
+    %         \item  Led comprehensive PhD research focused on deciphering hidden chromatin contacts from repeated genomic elements via advanced statistical profiling.
+    %         \item Developed Hicberg, a novel computational tool for reconstructing missing chromatin contacts in repeated regions, extensible to pair‑ended
+	% 				omics data, leading to new insights into the spatial organization of genomes.
+	% 		\item  Applied Hicberg to investigate Saccharomyces cerevisiae rDNA behavior and chromatin dynamics under various stress conditions (e.g., heat,
+	% 				oxidative) and kinetics.
+	% 		\item  Leveraged Deep Learning to predict 2‑micron plasmid interactions with the yeast genome based on nucleosome occupancy data.
+    %     \end{itemize}
+    % }
+	 \cvitem{2019-2020}{M.Sc. in Image Processing and A.I | \textit{Honors}}{Télécom Paris - Sorbonne University}{}
+    %     \begin{itemize}[
+    %         leftmargin=1pt, 
+    %         topsep=0pt,   
+    %         partopsep=0pt,
+    %         itemsep=-2pt,
+    %         after=\vspace{-2pt},
+    %         label=\textbullet 
+    %         % REMOVED: align=\justified
+    %     ]
+    %         \justifying % <<< ADD THIS HERE
+    %         \item  Led comprehensive PhD research focused on deciphering hidden chromatin contacts from repeated genomic elements via advanced statistical profiling.
+    %         \item Developed Hicberg, a novel computational tool for reconstructing missing chromatin contacts in repeated regions, extensible to pair‑ended
+	% 				omics data, leading to new insights into the spatial organization of genomes.
+	% 		\item  Applied Hicberg to investigate Saccharomyces cerevisiae rDNA behavior and chromatin dynamics under various stress conditions (e.g., heat,
+	% 				oxidative) and kinetics.
+	% 		\item  Leveraged Deep Learning to predict 2‑micron plasmid interactions with the yeast genome based on nucleosome occupancy data.
+    %     \end{itemize}
+    % }
+	\cvitem{2016 -- 2019}{Master's Degree in Engineering (Dipl. Ing.) | \textit{Highest Honors}}{ISBS - ESIEE Paris}{}
+    %     \begin{itemize}[
+    %         leftmargin=1pt, 
+    %         topsep=0pt,   
+    %         partopsep=0pt,
+    %         itemsep=-2pt,
+    %         after=\vspace{-2pt},
+    %         label=\textbullet 
+    %         % REMOVED: align=\justified
+    %     ]
+    %         \justifying % <<< ADD THIS HERE
+    %         \item  Led comprehensive PhD research focused on deciphering hidden chromatin contacts from repeated genomic elements via advanced statistical profiling.
+    %         \item Developed Hicberg, a novel computational tool for reconstructing missing chromatin contacts in repeated regions, extensible to pair‑ended
+	% 				omics data, leading to new insights into the spatial organization of genomes.
+	% 		\item  Applied Hicberg to investigate Saccharomyces cerevisiae rDNA behavior and chromatin dynamics under various stress conditions (e.g., heat,
+	% 				oxidative) and kinetics.
+	% 		\item  Leveraged Deep Learning to predict 2‑micron plasmid interactions with the yeast genome based on nucleosome occupancy data.
+    %     \end{itemize}
+    % }
+
 \end{cvtable}
 
-\vspace*{4pt}
+\vspace*{1pt}
 
 \cvsection{Publications}
+\vspace{-5pt}
 \begin{cvtable}
 	\cvpubitem{Hicberg: Reconstruction of genomic signals from repeated elements - BiorXiv}{Gradit S., Ortion S., Larrous P., Koszul R., Cournac A.}
-		{}{Pending}
+		{}{2025}
 \end{cvtable}
 
-\vspace*{4pt}
+\vspace*{1pt}
 
 \cvsection{Selected Scientific Communication}
-\begin{cvtable}[1.85]
-	\cvitem{2024}{JOBIM 2024}{Toulouse, France}{Poster | Prediction of omics signals from repeated elements.}
-	\cvitem{2024}{JeBiF@JOBIM 2024}{Toulouse, France}{Workshop | Good practices in bioinformatics.}
-	\cvitem{2024}{ICTE}{St-Malo, France}{Poster | Prediction of omics signals from repeated elements.}
-	\cvitem{2023}{31\textsuperscript{th} Intelligent Systems For Molecular Biology}{Lyon, France}{Poster and Talk | Statistical inference of repeated sequence contacts in Hi-C maps.}
+% \begin{cvtable}[1.85]
+%     \cvcommitem{2024}{JOBIM 2024}{Toulouse, France}{Poster | Prediction of omics signals from repeated elements.}
+%     \cvcommitem{2024}{JeBiF@JOBIM 2024}{Toulouse, France}{Workshop | Good practices in bioinformatics.}
+%     \cvcommitem{2024}{ICTE}{St-Malo, France}{Poster | Prediction of omics signals from repeated elements.}
+%     \cvcommitem{2023}{31\textsuperscript{th} Intelligent Systems For Molecular Biology}{Lyon, France}{Poster and Talk | Statistical inference of repeated sequence contacts in Hi-C maps.}
+% \end{cvtable}
+\vspace{-10pt}
+\begin{cvtable}[1.5]
+    \cvcommitem{2024}{JOBIM 2024}{Toulouse, France}{Poster | Prediction of omics signals from repeated elements.}
+    \cvcommitem{2024}{JeBiF@JOBIM 2024}{Toulouse, France}{Workshop | Good practices in bioinformatics.}
+    \cvcommitem{2024}{ICTE}{St-Malo, France}{Poster | Prediction of omics signals from repeated elements.}
+    \cvcommitem{2023}{31\textsuperscript{th} Intelligent Systems For Molecular Biology}{Lyon, France}{Poster and Talk | Statistical inference of repeated sequence contacts in Hi-C maps.}
 \end{cvtable}
 
-\vspace*{4pt}
+\vspace*{1pt}
 
 \cvsection{Certifications}
-\begin{cvtable}[1.25]
-	\cvitem{2023}{DeepLearning.AI}{}{TensorFlow Advanced Techniques Specialization and Deep Learning Specialization}
-	\cvitem{2023}{DeepLearning.AI - Stanford}{}{Machine Learning Specialization}
+\vspace{-8pt}
+\begin{cvtable}[1.15]
+	\cvcommitem{2023}{DeepLearning.AI}{}{TensorFlow Advanced Techniques Specialization and Deep Learning Specialization}
+	\cvcommitem{2023}{DeepLearning.AI - Stanford}{}{Machine Learning Specialization}
 \end{cvtable}
 
-\vspace*{4pt}
+\vspace*{1pt}
 
-\cvsection{Awards}
+\cvsection{Honors - Awards}
+\vspace{-7pt}
+
+
+
 \begin{cvtable}
-	\cvitem{2022}{1\textsuperscript{st} Prize of D4GEN Hackathon}{Genopole - Evry}{Predicting contacts between nuclear
+	
+	\cvawarditem{2025}{1\textsuperscript{st} Prize of Read Write Grow  European SynBio Hackathon}{SynBee}{Classification of protein sequence safety through LLM and AI for Synthetic Biology designs}
+	\cvawarditem{2024}{INCEPTION Progran Grant}{France}{Awarded a highly competitive grant covering the final 3 months of the PhD program demontstrating recognition of research merit andd strategic value in the field}
+	\cvawarditem{2022}{1\textsuperscript{st} Prize of D4GEN Hackathon}{Genopole - Evry}{Predicting contacts between nuclear
 	parasites and host genome}
 \end{cvtable}
 

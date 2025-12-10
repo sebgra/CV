@@ -189,6 +189,8 @@
 % details: https://tex.stackexchange.com/a/435790
 \RequirePackage[texcoord]{eso-pic}
 
+
+
 % for easy section style definitions
 \RequirePackage{titlesec}
 
@@ -266,7 +268,7 @@
 % \titleformat{<command>}[<shape>]{<format>}{<label>}{<sep>}{<before>}[<after>]
 \newcommand*{\cvsection}[1]{\section*{#1}}
 \titleformat{\section}%
-	{\color{sectioncolor}\normalfont\bfseries\LARGE}{}{0pt}{}
+	{\color{sectioncolor}\normalfont\bfseries\Large}{}{0pt}{}
 \titlespacing*{\section}{0pt}{1.5ex}{1ex}
 
 % grey subsection style for right column
@@ -292,11 +294,13 @@
 % text in user-specific color
 \newcommand{\sidetext}[1]{\textcolor{sidetextcolor}{#1}}
 
-% style for name
-\newcommand*{\cvnameformat}{\Huge\color{maincolor}}
-
-% style for job title
-\newcommand*{\cvjobtitleformat}{\Large\color{black!80}}
+% Try overriding the format (LESS RELIABLE)
+\newcommand*{\cvnameformat}[1]{
+    \centering\huge\color{maincolor}#1\par % \par ensures centering works
+}
+\newcommand*{\cvjobtitleformat}[1]{
+    \centering\large\color{black!80}#1\par
+}
 
 % mandatory personal information
 \newcommand*{\cvname}[1]{\renewcommand{\cvname}{#1}}
@@ -343,7 +347,7 @@
 
 % personal information item; \personal{<icon>}{<text>}
 \newcommand*{\personal}[2]{%
-	\circleicon{#1} & {\sidetext{#2}}\\%
+    #1 & {\sidetext{#2}}\\%
 }
 
 % other personal information as macro that can be used later. Usage:
@@ -353,18 +357,57 @@
 \newcommand*{\cvcustomdata}[2]{%
 	\apptocmd{\personaldata}{\personal{#1}{#2}}{}{}%
 }
+% Generic link command using \cvcustomdata
+\newcommand*{\cvlinkdata}[2]{\cvcustomdata{#1}{\href{#2}{#2}}}
+
 
 % useful shortcuts
 % NOTE: we use href instead of url so user can decide textformatting since url
 % automatically uses \texttt{} as format for the url
-\newcommand*{\cvbirthday}[1]{\cvcustomdata{\faUser}{#1}}
-\newcommand*{\cvaddress}[1]{\cvcustomdata{\faEnvelope}{#1}}
-\newcommand*{\cvphone}[1]{\cvcustomdata{\faPhone}{\href{tel:#1}{#1}}}
-\newcommand*{\cvsite}[1]{\cvcustomdata{\faGlobe}{\href{#1}{#1}}}
-\newcommand*{\cvmail}[1]{\cvcustomdata{\faAt}{\href{mailto:#1}{#1}}}
-\newcommand*{\cvkey}[2]{\cvcustomdata{\faKey}{%
-	\href{https://keyserver.ubuntu.com/pks/lookup?search=#2\&op=vindex\&fingerprint=on}{#1}%
+% \newcommand*{\cvbirthday}[1]{\cvcustomdata{\faUser}{#1}}
+% \newcommand*{\cvaddress}[1]{\cvcustomdata{\faEnvelope}{#1}}
+% \newcommand*{\cvphone}[1]{\cvcustomdata{\faPhone}{\href{tel:#1}{#1}}}
+% \newcommand*{\cvsite}[1]{\cvcustomdata{\faGlobe}{\href{#1}{#1}}}
+% \newcommand*{\cvmail}[1]{\cvcustomdata{\faAt}{\href{mailto:#1}{#1}}}
+% \newcommand*{\cvkey}[2]{\cvcustomdata{\faKey}{%
+% 	\href{https://keyserver.ubuntu.com/pks/lookup?search=#2\&op=vindex\&fingerprint=on}{#1}%
+% }
+% The icons (\faUser, \faEnvelope, etc.) are removed from the first argument
+\newcommand*{\cvbirthday}[1]{\cvcustomdata{}{#1}} 
+\newcommand*{\cvaddress}[1]{\cvcustomdata{\faHome}{#1}}
+\newcommand*{\cvphone}[1]{\cvcustomdata{\faPhone}{#1}}
+\newcommand*{\cvsite}[1]{\cvcustomdata{\faGlobe}{#1}}
+\newcommand*{\cvmail}[1]{\cvcustomdata{\faEnvelopeSquare}{#1}}
+\newcommand*{\cvgithub}[1]{\cvcustomdata{\faGithubSquare}{#1}}
+% Define GitHub using a logo
+% \newcommand*{\cvgithub}[1]{%
+%     \cvsocial{\faGithubSquare}{#1}{#1}%
+% }
+\newcommand*{\cvlinkedin}[1]{\cvcustomdata{\faLinkedin}{#1}}
+
+% The \cvkey command is a bit more complex, but we remove the icon as well
+\newcommand*{\cvkey}[2]{\cvcustomdata{}{%
+    \href{https://keyserver.ubuntu.com/pks/lookup?search=#2\&op=vindex\&fingerprint=on}{#1}%
 }}
+
+% --- Global Spacing/Style Control (Simplifies all future use) ---
+
+% 1. Define the tight personal item renderer (removes bubble/circle and reduces space)
+\newcommand*{\tightpersonal}[2]{%
+    #1 & {\sidetext{#2}}\\[-4pt] % Removes bubble/circle and adds tight spacing
+}
+
+% 2. Override the cvcustomdata structure to use the tight renderer
+% We use \renewcommand because \cvcustomdata should already be defined by your template.
+\renewcommand*{\cvcustomdata}[2]{%
+    \apptocmd{\personaldata}{\tightpersonal{#1}{#2}}{}{}%
+}
+
+% --- Helper Commands for Icon Use ---
+
+% 3. Safely define a helper command for general URLs (website, GitHub, LinkedIn)
+\providecommand*{\cvlinkdata}[2]{\cvcustomdata{#1}{\href{#2}{#2}}}
+
 
 % TODO find a cleaner solution for consistent spacing
 \newcommand{\nameandjob}{%
@@ -765,19 +808,48 @@
 % |                <longer description>              |
 % or, if description is empty:
 % | <date>         <title>       \hfill  <location>  |
-\newcommand{\cvitem}[4]{%
-	\parbox[t]{\datecolwidth}{\raggedright #1} &%
-	\parbox[t]{0.95\textwidth-\datecolwidth}{% 
-		\if\relax\detokenize{#4}\relax%
-			\parbox[t]{\linewidth-\widthof{\footnotesize #3}-0.55em}{\raggedright #2 \vspace{2.5pt}}%
-			{\footnotesize#3}%
-		\else%
-			\parbox[t]{\linewidth-\widthof{\footnotesize #3}-0.55em}{\raggedright \textbf{#2}\vspace{2.5pt}}%
-			{\footnotesize#3} %
-			\textcolor{itemtextcolor}{#4}%\vspace{\parsep}%
+
+%% Old version:
+% \newcommand{\cvitem}[4]{%
+% 	\parbox[t]{\datecolwidth}{\raggedright #1} &%
+% 	\parbox[t]{0.95\textwidth-\datecolwidth}{% 
+% 		\if\relax\detokenize{#4}\relax%
+% 			\parbox[t]{\linewidth-\widthof{\footnotesize #3}-0.55em}{\raggedright #2 \vspace{2.5pt}}%
+% 			{\footnotesize#3}%
+% 		\else%
+% 			\parbox[t]{\linewidth-\widthof{\footnotesize #3}-0.55em}{\raggedright \textbf{#2}\vspace{2.5pt}}%
+% 			{\footnotesize#3} %
+% 			\textcolor{itemtextcolor}{#4}%\vspace{\parsep}%
 			
-		\fi%
-	}\\
+% 		\fi%
+% 	}\\
+% }
+
+%% New version:
+
+\newcommand{\cvitem}[4]{%
+    % The content is all in one column (\textwidth)
+    \parbox[t]{\textwidth}{% 
+        
+        % --- Line 1: Position Title (#2) and Date (#1) ---
+        \raggedright 
+        \small\textbf{#2} % Position Title (Left-aligned, small font, bold)
+        \hfill % Horizontal fill
+        \small #1% Date (Right-aligned, small font)
+        \vspace{1pt} % Minimal space after this line
+        
+        \par% New line
+        % --- Line 2: Localization (#3) ---
+        \raggedright \footnotesize\textit{#3}% Localization (Left-aligned, footnotesize font, italic)
+        
+        % --- Line 3: Bullet List (#4) ---
+        \if\relax\detokenize{#4}\relax% If the bullet list (#4) is empty
+        \else% If the bullet list (#4) is NOT empty, display it
+            \vspace{-0.5\baselineskip}% Aggressive negative space
+            \textcolor{itemtextcolor}{\footnotesize #4}% Insert the bullet list (set list text to footnotesize)
+            \vspace{1pt}% Minimal space after the list
+        \fi%
+    }\\
 }
 
 % | <date>         <bold-title>  \par\hfill  <location>  |
@@ -803,11 +875,89 @@
 % | <year>         <bold title>                      |
 % |                <italic author>                   |
 % |                <journal>                         |
+
+%% Old version:
+
+% \newcommand{\cvpubitem}[4]{%
+% 	\parbox[t]{\datecolwidth}{\raggedright #4} &
+% 	\parbox[t]{0.98\textwidth-\datecolwidth}{%
+% 		\textbf{#1} \par \textit{#2} \par #3 \vspace{\parsep}%
+% 	}\\
+% }
+
+%% New version:
+
 \newcommand{\cvpubitem}[4]{%
-	\parbox[t]{\datecolwidth}{\raggedright #4} &
-	\parbox[t]{0.98\textwidth-\datecolwidth}{%
-		\textbf{#1} \par \textit{#2} \par #3 \vspace{\parsep}%
-	}\\
+    % The content is now all in one column (\textwidth)
+    \parbox[t]{\textwidth}{% 
+        
+        % --- Line 1: Publication Title (#1) and Date (#4) ---
+        \raggedright 
+        \textbf{#1} % Publication Title (Left-aligned, Bold)
+        \hfill % Horizontal fill (pushes the next content to the right edge)
+        #4% Year/Date (Right-aligned)
+        \vspace{1pt} % Minimal space after this line
+        
+        \par% New line
+        % --- Line 2: Journal/Venue (#2) ---
+        \raggedright \footnotesize\textit{#2}% Journal/Venue (Left-aligned, footnotesize font, italic)
+        
+        \par% New line
+        % --- Line 3: Authors/Citation (#3) ---
+        % Using negative space to pull the authors line up close to the journal line
+        \vspace{-0.5\baselineskip}% Aggressive negative space
+        \raggedright \footnotesize #3% Authors/Citation (Left-aligned, footnotesize font)
+        
+        \vspace{4pt}% Space after the entire publication entry
+    }\\
+}
+
+
+\newcommand{\cvcommitem}[4]{%
+    % The content is all in one column (\textwidth)
+    \parbox[t]{\textwidth}{% 
+        
+        % --- Line 1: Communication Title (#2), Location (#3), and Date (#1) ---
+        \raggedright 
+        \small\textbf{#2}, % Communication Title (Left-aligned, small font, bold, followed by a comma)
+        \textit{#3} % Location (Same line, italic)
+        \hfill % Horizontal fill
+        \small #1% Date (Right-aligned, small font)
+        % \vspace{1pt} % Minimal space after this line
+        
+        \par% New line
+        % --- Line 2: Details (#4) ---
+        % Details are pushed onto the next line
+        \parbox[t]{\textwidth}{%
+            \raggedright \footnotesize #4% Details (Left-aligned, footnotesize font)
+        }
+        
+        \vspace{1pt}% Space after the entire communication entry
+    }\\
+}
+
+\newcommand{\cvawarditem}[4]{%
+    % The content is all in one column (\textwidth)
+    \parbox[t]{\textwidth}{% 
+        
+        % --- Line 1: Communication Title (#2), Location (#3), and Date (#1) ---
+        \raggedright 
+        \small\textbf{#2}, % Communication Title (Left-aligned, small font, bold, followed by a comma)
+        \textit{#3} % Location (Same line, italic)
+        \hfill % Horizontal fill
+        \small #1% Date (Right-aligned, small font)
+        \vspace{1pt} % Minimal space after this line
+        
+        \par% New line
+        % --- Line 2: Details (#4) ---
+        % Details are pushed onto the next line
+        % MODIFIED: Reduced parbox width to prevent content from running under the date
+        \parbox[t]{0.95\textwidth}{% 
+            \raggedright \footnotesize #4% Details (Left-aligned, footnotesize font)
+        }
+        
+        \vspace{4pt}% Space after the entire communication entry (kept the increased spacing from last request)
+    }\\
 }
 
 % EOF - fortysecondscv.cls
