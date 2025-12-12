@@ -11,3 +11,7 @@ clean:
 
 cv:
 	pdflatex cv.tex
+
+one_page:
+
+	pdfjam cv.pdf 1 -o cv_one_page.pdf
