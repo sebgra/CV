@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.12.10)  12 DEC 2025 10:56
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.12.23)  6 JAN 2026 17:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -145,7 +145,7 @@ File: size10.clo 2025/01/22 v1.4n Standard LaTeX file (size option)
 \bibindent=\dimen165
 )
 (/opt/texlive/2025/texmf-dist/tex/latex/eso-pic/eso-pic.sty
-Package: eso-pic 2023/05/03 v3.0c eso-pic (RN)
+Package: eso-pic 2025/12/10 v3.0d eso-pic (RN)
 \ESO@tempdima=\dimen166
 \ESO@tempdimb=\dimen167
 )
@@ -846,8 +846,7 @@ s-TLF.
 )
 LaTeX Font Info:    Font shape `T1/ClearSans-TLF/m/n' will be
 (Font)              scaled to size 10.0pt on input line 340.
-
-No file cv.aux.
+ (./cv.aux)
 \openout1 = `cv.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 340.
@@ -868,7 +867,7 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 340.
 LaTeX Font Info:    ... okay on input line 340.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 340.
 LaTeX Font Info:    ... okay on input line 340.
-(/opt/texlive/2025/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+ (/opt/texlive/2025/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count343
 \scratchdimen=\dimen307
@@ -925,6 +924,7 @@ e
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 Package hyperref Info: Link coloring OFF on input line 340.
+(./cv.out) (./cv.out)
 \@outlinefile=\write4
 \openout4 = `cv.out'.
 
@@ -958,6 +958,7 @@ LaTeX Font Info:    Font shape `T1/ClearSans-TLF/m/n' will be
 (Font)              scaled to size 20.74pt on input line 342.
 LaTeX Font Info:    Font shape `T1/ClearSans-TLF/m/n' will be
 (Font)              scaled to size 12.0pt on input line 342.
+
 (/opt/texlive/2025/texmf-dist/tex/latex/microtype/mt-cmr.cfg)
 (/opt/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd)
 (/opt/texlive/2025/texmf-dist/tex/latex/microtype/mt-msa.cfg)
@@ -1006,25 +1007,15 @@ c/dvips/fontawesome5/fa5free2.enc}{/opt/texlive/2025/texmf-dist/fonts/enc/dvips
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-11-14>
  ***********
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-
-Package rerunfilecheck Warning: File `cv.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `cv.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  D41D8CD98F00B204E9800998ECF8427E;0.
+Package rerunfilecheck Info: File `cv.out' has not changed.
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 30869 strings out of 467538
- 594696 string characters out of 5393501
- 1075453 words of memory out of 5000000
- 59039 multiletter control sequences out of 15000+600000
- 720406 words of font info for 202 fonts, out of 8000000 for 9000
+ 30874 strings out of 467538
+ 594713 string characters out of 5393501
+ 1075720 words of memory out of 5000000
+ 59041 multiletter control sequences out of 15000+600000
+ 720185 words of font info for 200 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  99i,12n,108p,999b,698s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </opt/texlive/2025/texmf-dist/fonts/truetype/intel/clearsans/ClearSans-Regula
@@ -1035,7 +1026,7 @@ dItalic.pfb></opt/texlive/2025/texmf-dist/fonts/type1/intel/clearsans/ClearSans
 -Italic.pfb></opt/texlive/2025/texmf-dist/fonts/type1/public/fontawesome5/FontA
 wesome5Brands-Regular.pfb></opt/texlive/2025/texmf-dist/fonts/type1/public/font
 awesome5/FontAwesome5Free-Solid.pfb>
-Output written on cv.pdf (2 pages, 122000 bytes).
+Output written on cv.pdf (2 pages, 121992 bytes).
 PDF statistics:
  97 PDF objects out of 1000 (max. 8388607)
  59 compressed objects within 1 object stream
